@@ -86,7 +86,7 @@ task.spawn(function()
     }
 
     remoteFire.BuyAll:FireServer(unpack(args))
-    wait()
+    wait(5)
      end
 end)
 end
@@ -101,7 +101,7 @@ while AutoBuyDNA == true do
     }
 
     remoteFire.BuyAll:FireServer(unpack(args))
-    wait()
+    wait(5)
 
     end
 end)
