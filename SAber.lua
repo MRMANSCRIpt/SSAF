@@ -2,6 +2,8 @@ getgenv().AutoBuySaber = false
 getgenv().AutoTap = false
 getgenv().AutoBuyDNA = false
 getgenv().AutoSell = false
+getgenv().AutoBuyJump = false
+getgenv().AutoBossHit = false
 
 local remoteFire = game:GetService("ReplicatedStorage").Events
 
@@ -15,6 +17,8 @@ local b = w:CreateFolder("Auto farming") -- Creates the folder(U will put here y
 local c = w:CreateFolder("Buying")
 
 local d = w:CreateFolder("Utility")
+
+local e = w:CreateFolder("Credits!!!")
 
 b:Toggle("AutoClicker",function(bool)
     getgenv().AutoTap = bool
@@ -48,10 +52,34 @@ c:Toggle("Auto buy best saber",function(bool)
     end
 end)
 
+c:Toggle("Auto buy jump skill",function(bool)
+    getgenv().AutoBuyJump = bool
+    print('Auto Buy jump skill set to' , bool)
+    if bool then
+        doJump()
+    end
+end)
+
+c:Toggle("Auto buy boss hit",function(bool)
+    getgenv().AutoBossHit = bool
+    print('Auto Buy boss hit set to' , bool)
+    if bool then
+        doBosshit()
+    end
+end)
+
+
 b:Label("!! You must stand on the sell platform for the auto sell to work !!",{
     TextSize = 12; -- Self Explaining
     TextColor = Color3.fromRGB(255,0,0); -- Self Explaining
     BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+e:Label("Discord: ive seen sunlight#6040",{
+    TextSize = 12; -- Self Explaining
+    TextColor = Color3.fromRGB(3,252,140); -- Self Explaining
+    BgColor = Color3.fromRGB(24,1,48); -- Self Explaining
     
 }) 
 
@@ -117,6 +145,37 @@ task.spawn(function()
     end
 end)
 end
+
+function doJump()
+task.spawn(function() 
+    while AutoBuyJump == true do
+    
+            local args = {
+            [1] = "JumpBoosts"
+        }
+
+        
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer(unpack(args))
+        wait(5)
+        end
+    end)
+end
+
+function doBosshit()
+    task.spawn(function() 
+        while AutoBossHit == true do
+
+            local args = {
+                [1] = "BossBoosts"
+            }
+
+            game:GetService("ReplicatedStorage").Events.BuyAll:FireServer(unpack(args))
+            wait(5)    
+        end
+    end)
+end
+
+
 
 
 print("Executed!")
