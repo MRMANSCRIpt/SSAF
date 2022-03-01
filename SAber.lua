@@ -4,6 +4,7 @@ getgenv().AutoBuyDNA = false
 getgenv().AutoSell = false
 getgenv().AutoBuyJump = false
 getgenv().AutoBossHit = false
+getgenv().AutoBuyAura = false
 
 local remoteFire = game:GetService("ReplicatedStorage").Events
 
@@ -68,6 +69,14 @@ c:Toggle("Auto buy boss hit",function(bool)
     end
 end)
 
+c:Toggle("Auto buy player aura",function(bool)
+    getgenv().AutoBuyAura = bool
+    print('Auto Buy player aura set to' , bool)
+    if bool then
+        buyAura()
+    end
+end)
+
 
 b:Label("!! You must stand on the sell platform for the auto sell to work !!",{
     TextSize = 12; -- Self Explaining
@@ -83,7 +92,7 @@ e:Label("Discord: ive seen sunlight#6040",{
     
 }) 
 
-d:Button("Teleport to sell pad (may crash lol)",function()
+d:Button("Teleport to sell pad",function()
     teleportTO(game:GetService("Workspace").Locations.Sell.CFrame)
 end)
 
@@ -171,6 +180,21 @@ function doBosshit()
 
             game:GetService("ReplicatedStorage").Events.BuyAll:FireServer(unpack(args))
             wait(5)    
+        end
+    end)
+end
+
+
+function buyAura()
+    task.spawn(function() 
+        while AutoBuyAura == true do
+
+            local args = {
+            [1] = "Auras"
+            }
+
+            game:GetService("ReplicatedStorage").Events.BuyAll:FireServer(unpack(args))    
+            wait(5)
         end
     end)
 end
