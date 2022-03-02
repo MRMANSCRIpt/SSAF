@@ -5,6 +5,7 @@ getgenv().AutoSell = false
 getgenv().AutoBuyJump = false
 getgenv().AutoBossHit = false
 getgenv().AutoBuyAura = false
+getgenv().AutoCombine = false
 
 local remoteFire = game:GetService("ReplicatedStorage").Events
 
@@ -34,6 +35,14 @@ b:Toggle("Auto Sell",function(bool)
     print('Auto sell set to' , bool)
     if bool then
         dosell()
+    end
+end)
+
+b:Toggle("Auto combine pets",function(bool)
+    getgenv().AutoCombine = bool
+    print('Auto combine set to' , bool)
+    if bool then
+        CombinePets()
     end
 end)
 
@@ -199,8 +208,16 @@ function buyAura()
     end)
 end
 
+function CombinePets()
+    task.spawn(function() 
+        while AutoCombine == true do
 
+            game:GetService("ReplicatedStorage").Events.CombineAll:FireServer()
+            wait(3)
 
+        end
+    end)
+end
 
 print("Executed!")
 
