@@ -32,6 +32,13 @@ end)
 
 b:DestroyGui()
 
+b:Label("Discord: ive seen sunlight#6040",{
+    TextSize = 12; -- Self Explaining
+    TextColor = Color3.fromRGB(3,252,140); -- Self Explaining
+    BgColor = Color3.fromRGB(24,1,48); -- Self Explaining
+    
+}) 
+
 -- script
 
 function doTaunt()
