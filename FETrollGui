@@ -17,6 +17,19 @@ b:Box("Custom ID","number",function(value) -- "number" or "string"
     Thinger = value
 end)
 
+local Itemery
+b:Dropdown("Item",{"Dash","FloodSword","Trophy","WeakGravCoil","FloodShard"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
+    Itemery = value
+end)
+
+b:Button("Grab Item",function()
+    doItem(Itemery)
+end)
+
+b:Button("Respawn",function()
+    doRespawn()
+end)
+
 b:DestroyGui()
 
 -- script
@@ -38,5 +51,25 @@ function buyTaunt()
         workspace.svcl_com.ShopTaunt:FireServer(unpack(args))
 
     
+    end)
+end
+
+function doItem()
+    task.spawn(function()
+
+        local args = {
+            [1] = Itemery
+        }
+
+        workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+
+    end)
+end
+
+function doRespawn()
+    task.spawn(function()
+
+        workspace.svcl_com.Respawn:FireServer()
+
     end)
 end
