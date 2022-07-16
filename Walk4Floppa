@@ -22,58 +22,21 @@ b:Toggle("farm",function(bool)
 	end
 end)
 
-b:Label("i recommend placing your",{
-    TextSize = 18; -- Self Explaining
+b:Label("i recommend placing your mouse on the rebirths button to automate rebirthing",{
+    TextSize = 10; -- Self Explaining
     TextColor = Color3.fromRGB(0,255,0); -- Self Explaining
-    BgColor = Color3.fromRGB(55,100,100); -- Self Explaining
+    BgColor = Color3.fromRGB(38, 38, 38); -- Self Explaining
     
 }) 
 
-b:Label("mouse on the rebirths",{
-    TextSize = 18; -- Self Explaining
-    TextColor = Color3.fromRGB(0,255,0); -- Self Explaining
-    BgColor = Color3.fromRGB(55,100,100); -- Self Explaining
-    
-}) 
 
-b:Label("button to automate",{
-    TextSize = 18; -- Self Explaining
-    TextColor = Color3.fromRGB(0,255,0); -- Self Explaining
-    BgColor = Color3.fromRGB(55,100,100); -- Self Explaining
-    
-}) 
-
-b:Label("rebirthing",{
-    TextSize = 18; -- Self Explaining
-    TextColor = Color3.fromRGB(0,255,0); -- Self Explaining
-    BgColor = Color3.fromRGB(55,100,100); -- Self Explaining
-    
-}) 
-
-b:Label("you should also face forwards before starting autofarm",{
-    TextSize = 11; -- Self Explaining
-    TextColor = Color3.fromRGB(255,0,0); -- Self Explaining
-    BgColor = Color3.fromRGB(100,55,100); -- Self Explaining
-    
-}) 
 
 b:DestroyGui()
 
 function geez()
 while Pee == true do
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16, 5, -40616)
-wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16, 5, -40602)
-keypress(0x53)
-wait(0.2)
-keyrelease(0x53)
-wait(0.2)
-keypress(0x57)
-wait()
-mouse1click()
-wait(0.2)
-keyrelease(0x57)
-wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.EndHitBox.CFrame + Vector3.new(0, 5, 0)
+wait(0.3)
 mouse1click()
 wait(0.3)
 end
