@@ -32,6 +32,7 @@ local Bypasses = {
     ["clit"] = "cl{{aieixzvzx:it}}",
     ["lmao"] = "lm{{aieixzvzx:ao}}",
     ["pedo"] = "pe{{aieixzvzx:do}}",
+    ["porn"] = "po{{aieixzvzx:rn}}",
     ["kill"] = "ki{{aieixzvzx:ll}}"
 }
 
