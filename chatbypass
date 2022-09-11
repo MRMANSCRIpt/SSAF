@@ -18,6 +18,7 @@ local Bypasses = {
     ["kike"] = "ki{{aieixzvzx:ke}}",
     ["motherfucker"] = "motherf{{aieixzvzx:ucker}}",
     ["nigga"] = "ni{{aieixzvzx:gga}}",
+    ["suicide"] = "sui{{aieixzvzx:cide}}",
     ["nigger"] = "ni{{aieixzvzx:gger}}",
     ["niggers"] = "ni{{aieixzvzx:ggers}}",
     ["piss"] = "p{{aieixzvzx:iss}}",
