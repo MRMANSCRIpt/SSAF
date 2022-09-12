@@ -1,5 +1,8 @@
 if game.PlaceId == 32990482 then
 	
+rconsolewarn("Executed. Enjoy")
+wait(3)
+rconsoleclose()
     local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
     
     local w = library:CreateWindow("FE1 Trolling GUI") -- Creates the window
