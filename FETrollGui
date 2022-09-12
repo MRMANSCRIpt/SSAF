@@ -1,164 +1,715 @@
 if game.PlaceId == 32990482 then
 	
-rconsolewarn("Executed. Enjoy")
-wait(3)
-rconsoleclose()
-    local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
-    
-    local w = library:CreateWindow("FE1 Trolling GUI") -- Creates the window
-    
-    local b = w:CreateFolder("Troll") -- Creates the folder(U will put here your buttons,etc)
-    
-    local answer
-    b:Dropdown("Win Zone",{"Easy","Medium","Hard"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
-        answer = value
-        print(answer)
-    end)
+    rconsolewarn("Executed. Enjoy")
+    wait(3)
+    rconsoleclose()
+        -- Gui to Lua
+-- Version: 3.2
 
-    b:Button("Win",function()
-        if answer == "Hard" then
-            hard()
-        else
-            easy()
-        end
-    end)
+-- Instances:
 
-    b:Button("Buy taunt",function()
-        buyTaunt()
-    end)
-    
-    b:Button("Taunt",function()
-        doTaunt()
-    end)
-    
-    local Thinger
-    b:Box("Custom ID","number",function(value) -- "number" or "string"
-        Thinger = value
-    end)
-    
-    local Itemery
-    b:Dropdown("Item",{"Dash","FloodSword","Trophy","WeakGravCoil","FloodShard"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
-        Itemery = value
-    end)
-    
-    b:Button("Grab Item",function()
-        doItem(Itemery)
-    end)
-    
-    b:Button("Respawn",function()
-        doRespawn()
-    end)
-    
-    b:DestroyGui()
-    
-    b:Label("Discord: ive seen sunlight#6040",{
-        TextSize = 12; -- Self Explaining
-        TextColor = Color3.fromRGB(3,252,140); -- Self Explaining
-        BgColor = Color3.fromRGB(24,1,48); -- Self Explaining
-        
-    }) 
-    
-    -- script
-    
-    function doTaunt()
-        task.spawn(function()
-            workspace.svcl_com.Taunt:FireServer()
-            print("taunted")
-        end)
-    end
-    
-    function buyTaunt()
-        task.spawn(function()
-    
-            local args = {
-                [1] = "http://www.roblox.com/asset/?id="..Thinger
-            }
-    
-            workspace.svcl_com.ShopTaunt:FireServer(unpack(args))
-    
-        
-        end)
-    end
-    local plr = game.Players.LocalPlayer.Character    
-function easy()
-if answer == "Easy" then
-    for i,v in pairs(game.Workspace:GetDescendants()) do
-	if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Easy" then
-		plr.HumanoidRootPart.CFrame = v.CFrame
-		wait()
-	end
+local RHBB = Instance.new("ScreenGui")
+local FrameAlpha = Instance.new("Frame")
+local TitleL = Instance.new("TextLabel")
+local Win = Instance.new("TextButton")
+local DD = Instance.new("TextButton")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local TextButton2 = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextButton3 = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local TauntID = Instance.new("TextBox")
+local Taunt = Instance.new("TextButton")
+local Item = Instance.new("TextButton")
+local DD2 = Instance.new("TextButton")
+local Frame2 = Instance.new("Frame")
+local TextButton_2 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local TextButton2_2 = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UICorner_7 = Instance.new("UICorner")
+local TextButton3_2 = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local TextButton4 = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local TextButton5 = Instance.new("TextButton")
+local UICorner_10 = Instance.new("UICorner")
+local Respawn = Instance.new("TextButton")
+local label = Instance.new("TextLabel")
+local Close = Instance.new("TextButton")
+local Open = Instance.new("TextButton")
+
+--Properties:
+
+RHBB.Name = "RHBB"
+RHBB.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+RHBB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+RHBB.ResetOnSpawn = false
+
+FrameAlpha.Name = "FrameAlpha"
+FrameAlpha.Parent = RHBB
+FrameAlpha.Active = true
+FrameAlpha.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+FrameAlpha.BorderColor3 = Color3.fromRGB(15, 15, 15)
+FrameAlpha.Draggable = true
+FrameAlpha.Position = UDim2.new(0.792812407, -251, 0.538304329, -100)
+FrameAlpha.Size = UDim2.new(0, 187, 0, 261)
+
+TitleL.Name = "TitleL"
+TitleL.Parent = FrameAlpha
+TitleL.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TitleL.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TitleL.Size = UDim2.new(0, 187, 0, 33)
+TitleL.Font = Enum.Font.SourceSans
+TitleL.Text = "FE1 Script"
+TitleL.TextColor3 = Color3.fromRGB(235, 235, 235)
+TitleL.TextScaled = true
+TitleL.TextSize = 14.000
+TitleL.TextStrokeTransparency = 0.000
+TitleL.TextWrapped = true
+
+Win.Name = "Win"
+Win.Parent = FrameAlpha
+Win.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Win.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Win.Position = UDim2.new(0, 0, 0.151067272, 0)
+Win.Size = UDim2.new(0, 155, 0, 30)
+Win.Font = Enum.Font.SourceSans
+Win.Text = "Win"
+Win.TextColor3 = Color3.fromRGB(235, 235, 235)
+Win.TextScaled = true
+Win.TextSize = 14.000
+Win.TextStrokeTransparency = 0.000
+Win.TextWrapped = true
+
+DD.Name = "DD"
+DD.Parent = FrameAlpha
+DD.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+DD.BorderColor3 = Color3.fromRGB(15, 15, 15)
+DD.Position = UDim2.new(0.828877032, 0, 0.151067272, 0)
+DD.Size = UDim2.new(0, 32, 0, 30)
+DD.Font = Enum.Font.SourceSans
+DD.Text = "➡"
+DD.TextColor3 = Color3.fromRGB(235, 235, 235)
+DD.TextScaled = true
+DD.TextSize = 14.000
+DD.TextStrokeTransparency = 0.000
+DD.TextWrapped = true
+
+Frame.Parent = FrameAlpha
+Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(1.05882359, 0, 0.149425283, 0)
+Frame.Size = UDim2.new(0, 100, 0, 0)
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = Frame
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0, 25, 0, 8)
+TextButton.Size = UDim2.new(0, 50, 0, 0)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Easy"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextTransparency = 1.000
+TextButton.TextWrapped = true
+
+UICorner_2.Parent = TextButton
+
+TextButton2.Name = "TextButton2"
+TextButton2.Parent = Frame
+TextButton2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton2.BorderSizePixel = 0
+TextButton2.Position = UDim2.new(0, 25, 0, 52)
+TextButton2.Size = UDim2.new(0, 50, 0, 0)
+TextButton2.Font = Enum.Font.SourceSans
+TextButton2.Text = "Medium"
+TextButton2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton2.TextScaled = true
+TextButton2.TextSize = 14.000
+TextButton2.TextTransparency = 1.000
+TextButton2.TextWrapped = true
+
+UICorner_3.Parent = TextButton2
+
+TextButton3.Name = "TextButton3"
+TextButton3.Parent = Frame
+TextButton3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton3.BorderSizePixel = 0
+TextButton3.Position = UDim2.new(0, 25, 0, 96)
+TextButton3.Size = UDim2.new(0, 50, 0, 0)
+TextButton3.Font = Enum.Font.SourceSans
+TextButton3.Text = "Hard"
+TextButton3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton3.TextScaled = true
+TextButton3.TextSize = 14.000
+TextButton3.TextTransparency = 1.000
+TextButton3.TextWrapped = true
+
+UICorner_4.Parent = TextButton3
+
+TauntID.Name = "TauntID"
+TauntID.Parent = FrameAlpha
+TauntID.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TauntID.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TauntID.Position = UDim2.new(0, 0, 0.291187733, 0)
+TauntID.Size = UDim2.new(0, 187, 0, 30)
+TauntID.Font = Enum.Font.SourceSans
+TauntID.PlaceholderColor3 = Color3.fromRGB(76, 76, 76)
+TauntID.PlaceholderText = "Custom taunt ID"
+TauntID.Text = ""
+TauntID.TextColor3 = Color3.fromRGB(0, 0, 0)
+TauntID.TextScaled = true
+TauntID.TextSize = 14.000
+TauntID.TextWrapped = true
+
+Taunt.Name = "Taunt"
+Taunt.Parent = FrameAlpha
+Taunt.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Taunt.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Taunt.Position = UDim2.new(0, 0, 0.44225502, 0)
+Taunt.Size = UDim2.new(0, 187, 0, 30)
+Taunt.Font = Enum.Font.SourceSans
+Taunt.Text = "Taunt (no cooldown)"
+Taunt.TextColor3 = Color3.fromRGB(235, 235, 235)
+Taunt.TextScaled = true
+Taunt.TextSize = 14.000
+Taunt.TextStrokeTransparency = 0.000
+Taunt.TextWrapped = true
+
+Item.Name = "Item"
+Item.Parent = FrameAlpha
+Item.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Item.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Item.Position = UDim2.new(0, 0, 0.603174567, 0)
+Item.Size = UDim2.new(0, 155, 0, 30)
+Item.Font = Enum.Font.SourceSans
+Item.Text = "Grab item"
+Item.TextColor3 = Color3.fromRGB(235, 235, 235)
+Item.TextScaled = true
+Item.TextSize = 14.000
+Item.TextStrokeTransparency = 0.000
+Item.TextWrapped = true
+
+DD2.Name = "DD2"
+DD2.Parent = FrameAlpha
+DD2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+DD2.BorderColor3 = Color3.fromRGB(15, 15, 15)
+DD2.Position = UDim2.new(0.828877032, 0, 0.603174567, 0)
+DD2.Size = UDim2.new(0, 32, 0, 30)
+DD2.Font = Enum.Font.SourceSans
+DD2.Text = "➡"
+DD2.TextColor3 = Color3.fromRGB(235, 235, 235)
+DD2.TextScaled = true
+DD2.TextSize = 14.000
+DD2.TextStrokeTransparency = 0.000
+DD2.TextWrapped = true
+
+Frame2.Name = "Frame2"
+Frame2.Parent = FrameAlpha
+Frame2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Frame2.BorderSizePixel = 0
+Frame2.Position = UDim2.new(1.05882359, 0, 0.467432946, 0)
+Frame2.Size = UDim2.new(0, 100, 0, 0)
+
+TextButton_2.Parent = Frame2
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.25, 0, 0.0549450591, 0)
+TextButton_2.Size = UDim2.new(0, 50, 0, 0)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "Dash"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14.000
+TextButton_2.TextTransparency = 1.000
+TextButton_2.TextWrapped = true
+
+UICorner_5.Parent = TextButton_2
+
+TextButton2_2.Name = "TextButton2"
+TextButton2_2.Parent = Frame2
+TextButton2_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton2_2.BorderSizePixel = 0
+TextButton2_2.Position = UDim2.new(0.25, 0, 0.234999999, 0)
+TextButton2_2.Size = UDim2.new(0, 50, 0, 0)
+TextButton2_2.Font = Enum.Font.SourceSans
+TextButton2_2.Text = "FloodSword"
+TextButton2_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton2_2.TextScaled = true
+TextButton2_2.TextSize = 14.000
+TextButton2_2.TextTransparency = 1.000
+TextButton2_2.TextWrapped = true
+
+UICorner_6.Parent = TextButton2_2
+
+UICorner_7.CornerRadius = UDim.new(0, 10)
+UICorner_7.Parent = Frame2
+
+TextButton3_2.Name = "TextButton3"
+TextButton3_2.Parent = Frame2
+TextButton3_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton3_2.BorderSizePixel = 0
+TextButton3_2.Position = UDim2.new(0.25, 0, 0.414999992, 0)
+TextButton3_2.Size = UDim2.new(0, 50, 0, 0)
+TextButton3_2.Font = Enum.Font.SourceSans
+TextButton3_2.Text = "Trophy"
+TextButton3_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton3_2.TextScaled = true
+TextButton3_2.TextSize = 14.000
+TextButton3_2.TextTransparency = 1.000
+TextButton3_2.TextWrapped = true
+
+UICorner_8.Parent = TextButton3_2
+
+TextButton4.Name = "TextButton4"
+TextButton4.Parent = Frame2
+TextButton4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton4.BorderSizePixel = 0
+TextButton4.Position = UDim2.new(0.25, 0, 0.595000029, 0)
+TextButton4.Size = UDim2.new(0, 50, 0, 0)
+TextButton4.Font = Enum.Font.SourceSans
+TextButton4.Text = "WeakGravCoil"
+TextButton4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton4.TextScaled = true
+TextButton4.TextSize = 14.000
+TextButton4.TextTransparency = 1.000
+TextButton4.TextWrapped = true
+
+UICorner_9.Parent = TextButton4
+
+TextButton5.Name = "TextButton5"
+TextButton5.Parent = Frame2
+TextButton5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton5.BorderSizePixel = 0
+TextButton5.Position = UDim2.new(0.25, 0, 0.774999976, 0)
+TextButton5.Size = UDim2.new(0, 50, 0, 0)
+TextButton5.Font = Enum.Font.SourceSans
+TextButton5.Text = "FloodShard"
+TextButton5.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton5.TextScaled = true
+TextButton5.TextSize = 14.000
+TextButton5.TextTransparency = 1.000
+TextButton5.TextWrapped = true
+
+UICorner_10.Parent = TextButton5
+
+Respawn.Name = "Respawn"
+Respawn.Parent = FrameAlpha
+Respawn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Respawn.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Respawn.Position = UDim2.new(0, 0, 0.748768389, 0)
+Respawn.Size = UDim2.new(0, 187, 0, 30)
+Respawn.Font = Enum.Font.SourceSans
+Respawn.Text = "Respawn"
+Respawn.TextColor3 = Color3.fromRGB(235, 235, 235)
+Respawn.TextScaled = true
+Respawn.TextSize = 14.000
+Respawn.TextStrokeTransparency = 0.000
+Respawn.TextWrapped = true
+
+label.Name = "label"
+label.Parent = FrameAlpha
+label.BackgroundColor3 = Color3.fromRGB(46, 0, 79)
+label.BorderColor3 = Color3.fromRGB(15, 15, 15)
+label.Position = UDim2.new(0, 0, 0.904214621, 0)
+label.Size = UDim2.new(0, 187, 0, 19)
+label.Font = Enum.Font.SourceSans
+label.Text = "made by ive seen sunlight#6080"
+label.TextColor3 = Color3.fromRGB(235, 235, 235)
+label.TextScaled = true
+label.TextSize = 14.000
+label.TextStrokeTransparency = 0.000
+label.TextWrapped = true
+
+Close.Name = "Close"
+Close.Parent = FrameAlpha
+Close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Close.BackgroundTransparency = 0.500
+Close.Position = UDim2.new(0.844919801, 0, 0.0306513403, 0)
+Close.Size = UDim2.new(0, 25, 0, 25)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextScaled = true
+Close.TextSize = 14.000
+Close.TextStrokeTransparency = 0.500
+Close.TextWrapped = true
+
+Open.Name = "Open"
+Open.Parent = RHBB
+Open.BackgroundColor3 = Color3.fromRGB(0, 255, 123)
+Open.Position = UDim2.new(0, 0, 0.790849686, 0)
+Open.Size = UDim2.new(0, 93, 0, 50)
+Open.Visible = false
+Open.Font = Enum.Font.SourceSans
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(0, 0, 0)
+Open.TextScaled = true
+Open.TextSize = 14.000
+Open.TextWrapped = true
+
+-- Scripts:
+
+local function DEOZ_fake_script() -- Win.LocalScript 
+	local script = Instance.new('LocalScript', Win)
+
+	local plr = game.Players.LocalPlayer.Character
+	script.Parent.MouseButton1Click:Connect(function()
+		for i,v in pairs(workspace:children())do
+			if v:IsA'BoolValue'and v.Name == 'c1' then
+				if v.Value == true then
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Easy" then
+								plr.HumanoidRootPart.CFrame = v.CFrame
+								wait()
+							end
+						end
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Parent.Name == "Easy" and v.Name == "Exit" then
+								wait(0.5)
+								plr.HumanoidRootPart.CFrame = v.CFrame
+							end
+					end
+				end
+			elseif v.Name == 'c2' and v.Value == true then
+	
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Medium" then
+								plr.HumanoidRootPart.CFrame = v.CFrame
+								wait()
+							end
+					end
+					print("LOL")
+	
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Parent.Name == "Medium" and v.Name == "Exit" then
+								wait(0.5)
+								plr.HumanoidRootPart.CFrame = v.CFrame
+							end
+						end
+				elseif v.Name == 'c3' and v.Value == true then
+	
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Hard" then
+								plr.HumanoidRootPart.CFrame = v.CFrame
+								wait()
+							end
+						end
+	
+						for i,v in pairs(game.Workspace:GetDescendants()) do
+							if v:IsA("Part") and v.Parent.Parent.Name == "Hard" and v.Name == "Exit" then
+								wait(0.5)
+								plr.HumanoidRootPart.CFrame = v.CFrame
+							end
+						end
+	
+			end
+		end
+	end)
 end
-for i,v in pairs(game.Workspace:GetDescendants()) do
-	if v:IsA("Part") and v.Parent.Parent.Name == "Easy" and v.Name == "Exit" then
-		wait(0.5)
-        plr.HumanoidRootPart.CFrame = v.CFrame
-	end
-end
-elseif answer == "Medium" then
-medium()
-end
-end
+coroutine.wrap(DEOZ_fake_script)()
+local function BMIPLCB_fake_script() -- DD.LocalScript 
+	local script = Instance.new('LocalScript', DD)
 
-
-
-function medium()
-if answer == "Medium" then
-    for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Medium" then
-            plr.HumanoidRootPart.CFrame = v.CFrame
-            wait()
-        end
-    end
-    
-    for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("Part") and v.Parent.Parent.Name == "Medium" and v.Name == "Exit" then
-            wait(0.5)
-            plr.HumanoidRootPart.CFrame = v.CFrame
-        end
-    end
-elseif answer == "Hard" then
-    hard()
+	local press = false
+	local dropdown = script.Parent.Parent.Frame
+	script.Parent.MouseButton1Click:Connect(function()
+		if press == false then
+			press = true
+			dropdown:TweenSize(UDim2.new(0,100,0,140), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton.TextTransparency = 0
+			dropdown.TextButton2:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton2.TextTransparency = 0
+			dropdown.TextButton3:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton3.TextTransparency = 0
+		elseif press == true then
+			press = false
+			dropdown:TweenSize(UDim2.new(0,100,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton.TextTransparency = 1
+			dropdown.TextButton2:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton2.TextTransparency = 1
+			dropdown.TextButton3:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton3.TextTransparency = 1
+		end
+	end)
 end
+coroutine.wrap(BMIPLCB_fake_script)()
+local function AMKFED_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local c1 = Instance.new("BoolValue")
+	c1.Parent = game.Workspace
+	c1.Name = "c1"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c1.Value = true
+		game.Workspace.c2.Value = false
+		game.Workspace.c3.Value = false
+		print("e")
+	end)
 end
+coroutine.wrap(AMKFED_fake_script)()
+local function IRVC_fake_script() -- TextButton2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton2)
 
-function hard()
-if answer == "Hard" then
-        for i,v in pairs(game.Workspace:GetDescendants()) do
-            if v:IsA("Part") and v.Parent.Name == "Lift" and v.Parent.Parent.Name == "Hard" then
-                plr.HumanoidRootPart.CFrame = v.CFrame
-                wait()
-            end
-        end
-        
-        for i,v in pairs(game.Workspace:GetDescendants()) do
-            if v:IsA("Part") and v.Parent.Parent.Name == "Hard" and v.Name == "Exit" then
-                wait(0.5)
-                plr.HumanoidRootPart.CFrame = v.CFrame
-            end
-        end
-        end
-    end
+	local c2 = Instance.new("BoolValue")
+	c2.Parent = game.Workspace
+	c2.Name = "c2"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c2.Value = true
+		game.Workspace.c1.Value = false
+		game.Workspace.c3.Value = false
+		print("m")
+	end)
+end
+coroutine.wrap(IRVC_fake_script)()
+local function BKBWPU_fake_script() -- TextButton3.LocalScript 
+	local script = Instance.new('LocalScript', TextButton3)
 
-    function doItem()
-        task.spawn(function()
+	local c3 = Instance.new("BoolValue")
+	c3.Parent = game.Workspace
+	c3.Name = "c3"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c3.Value = true
+		game.Workspace.c1.Value = false
+		game.Workspace.c2.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(BKBWPU_fake_script)()
+local function GVJGH_fake_script() -- TauntID.LocalScript 
+	local script = Instance.new('LocalScript', TauntID)
+
+	script.Parent.FocusLost:Connect(function(enter)
+		local n = script.Parent.Text
+		if enter then
+			local args = {
+				[1] = "http://www.roblox.com/asset/?id="..n
+			}
+	
+			workspace.svcl_com.ShopTaunt:FireServer(unpack(args))
+	
+		end
+	end)
+end
+coroutine.wrap(GVJGH_fake_script)()
+local function QYAGET_fake_script() -- Taunt.LocalScript 
+	local script = Instance.new('LocalScript', Taunt)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		workspace.svcl_com.Taunt:FireServer()
+	end)
+end
+coroutine.wrap(QYAGET_fake_script)()
+local function IYODBFS_fake_script() -- Item.LocalScript 
+	local script = Instance.new('LocalScript', Item)
+
+	local plr = game.Players.LocalPlayer.Character
+	script.Parent.MouseButton1Click:Connect(function()
+		for i,v in pairs(workspace:children())do
+			if v:IsA'BoolValue'and v.Name == 'c4' then
+				if v.Value == true then
+					local args = {
+						[1] = "Dash"
+					}
+	
+					workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+				end
+			elseif v.Name == 'c5' and v.Value == true then
+				local args = {
+					[1] = "FloodSword"
+				}
+	
+				workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+				elseif v.Name == 'c6' and v.Value == true then
+				local args = {
+					[1] = "Trophy"
+				}
+	
+				workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+			elseif v.Name == 'c7' and v.Value == true then
+				local args = {
+					[1] = "WeakGravCoil"
+				}
+	
+				workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+			elseif v.Name == 'c8' and v.Value == true then
+				local args = {
+					[1] = "FloodShard"
+				}
+	
+				workspace.svcl_com.ShopExtra:FireServer(unpack(args))
+	
+			end
+		end
+	end)
+	
+	
+		
+end
+coroutine.wrap(IYODBFS_fake_script)()
+local function PVOVTTE_fake_script() -- DD2.LocalScript 
+	local script = Instance.new('LocalScript', DD2)
+
+	local press = false
+	local dropdown = script.Parent.Parent.Frame2
+	script.Parent.MouseButton1Click:Connect(function()
+		if press == false then
+			press = true
+			dropdown:TweenSize(UDim2.new(0,100,0,240), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton.TextTransparency = 0
+			dropdown.TextButton2:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton2.TextTransparency = 0
+			dropdown.TextButton3:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton3.TextTransparency = 0
+			dropdown.TextButton4:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton4.TextTransparency = 0
+			dropdown.TextButton5:TweenSize(UDim2.new(0,50,0,40), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton5.TextTransparency = 0
+		elseif press == true then
+			press = false
+			dropdown:TweenSize(UDim2.new(0,100,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton.TextTransparency = 1
+			dropdown.TextButton2:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton2.TextTransparency = 1
+			dropdown.TextButton3:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton3.TextTransparency = 1
+			dropdown.TextButton4:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton4.TextTransparency = 1
+			dropdown.TextButton5:TweenSize(UDim2.new(0,50,0,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+			dropdown.TextButton5.TextTransparency = 1
+		end
+	end)
+end
+coroutine.wrap(PVOVTTE_fake_script)()
+local function ORRSO_fake_script() -- TextButton_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton_2)
+
+	local c4 = Instance.new("BoolValue")
+	c4.Parent = game.Workspace
+	c4.Name = "c4"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c4.Value = true
+		game.Workspace.c5.Value = false
+		game.Workspace.c6.Value = false
+		game.Workspace.c7.Value = false
+		game.Workspace.c8.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(ORRSO_fake_script)()
+local function UGGILRX_fake_script() -- TextButton2_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton2_2)
+
+	local c5 = Instance.new("BoolValue")
+	c5.Parent = game.Workspace
+	c5.Name = "c5"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c5.Value = true
+		game.Workspace.c4.Value = false
+		game.Workspace.c6.Value = false
+		game.Workspace.c7.Value = false
+		game.Workspace.c8.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(UGGILRX_fake_script)()
+local function QXHDOXI_fake_script() -- TextButton3_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton3_2)
+
+	local c6 = Instance.new("BoolValue")
+	c6.Parent = game.Workspace
+	c6.Name = "c6"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c6.Value = true
+		game.Workspace.c5.Value = false
+		game.Workspace.c4.Value = false
+		game.Workspace.c7.Value = false
+		game.Workspace.c8.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(QXHDOXI_fake_script)()
+local function HQZOXB_fake_script() -- TextButton4.LocalScript 
+	local script = Instance.new('LocalScript', TextButton4)
+
+	local c7 = Instance.new("BoolValue")
+	c7.Parent = game.Workspace
+	c7.Name = "c7"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c7.Value = true
+		game.Workspace.c5.Value = false
+		game.Workspace.c6.Value = false
+		game.Workspace.c4.Value = false
+		game.Workspace.c8.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(HQZOXB_fake_script)()
+local function YGJVEXC_fake_script() -- TextButton5.LocalScript 
+	local script = Instance.new('LocalScript', TextButton5)
+
+	local c8 = Instance.new("BoolValue")
+	c8.Parent = game.Workspace
+	c8.Name = "c8"
+	script.Parent.MouseButton1Click:Connect(function()	
+		c8.Value = true
+		game.Workspace.c5.Value = false
+		game.Workspace.c6.Value = false
+		game.Workspace.c7.Value = false
+		game.Workspace.c4.Value = false
+		print("h")
+	end)
+end
+coroutine.wrap(YGJVEXC_fake_script)()
+local function TPHB_fake_script() -- Respawn.LocalScript 
+	local script = Instance.new('LocalScript', Respawn)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		workspace.svcl_com.Taunt:FireServer()
+	end)
+end
+coroutine.wrap(TPHB_fake_script)()
+local function KQPQH_fake_script() -- Respawn.LocalScript 
+	local script = Instance.new('LocalScript', Respawn)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		workspace.svcl_com.Respawn:FireServer()
+	end)
+end
+coroutine.wrap(KQPQH_fake_script)()
+local function MYDFFC_fake_script() -- Close.LocalScript 
+	local script = Instance.new('LocalScript', Close)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Visible = false
+		script.Parent.Parent.Parent.Open.Visible = true
+	end)
+end
+coroutine.wrap(MYDFFC_fake_script)()
+local function XWEJJCA_fake_script() -- Open.LocalScript 
+	local script = Instance.new('LocalScript', Open)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Visible = false
+		script.Parent.Parent.FrameAlpha.Visible = true
+	end)
+end
+coroutine.wrap(XWEJJCA_fake_script)()
+
+        elseif not
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/MRMANSCRIpt/SSAF/main/Idiot'))() then
+            print("This game isn't Flood Escape 1...")
+        end
     
-            local args = {
-                [1] = Itemery
-            }
-    
-            workspace.svcl_com.ShopExtra:FireServer(unpack(args))
-    
-        end)
-    end
-    
-    function doRespawn()
-        task.spawn(function()
-    
-            workspace.svcl_com.Respawn:FireServer()
-    
-        end)
-    end
-    elseif not
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/MRMANSCRIpt/SSAF/main/Idiot'))() then
-        print("This game isn't Flood Escape 1...")
-    end
