@@ -1,3 +1,5 @@
+-- feel free to grab code idrc this shit is made by ! $ ive seen sunlight#6040 anyways
+
 if game.PlaceId == 32990482 then
 	
     rconsolewarn("Executed. Enjoy")
