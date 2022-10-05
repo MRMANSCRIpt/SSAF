@@ -1,3 +1,5 @@
+--controller support made by the homie ! $ ive seen sunlight#6040
+
 if IY_LOADED and not _G.IY_DEBUG == true then
 	-- error("Infinite Yield is already running!",0)
 	return
@@ -6877,7 +6879,7 @@ local UserInputService = game:GetService("UserInputService")
 flyKeyDown = UserInputService.InputChanged:Connect(function(KEY,gameProcessedEvent)
 
 local function doFlys(KEY)
-	iyflyspeed2 = KEY.Position.Y * 3
+	iyflyspeed2 = KEY.Position.Y * 2
 	CONTROL.F = (vfly and vehicleflyspeed2 or iyflyspeed2)
 end
 
