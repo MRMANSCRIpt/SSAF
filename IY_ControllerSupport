@@ -208,7 +208,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
-Title.Text = "Infinite Yield FE v"..ver
+Title.Text = "Infinite Yield FE v"..ver.." (Modded)"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.ZIndex = 10
 table.insert(shade1,Title)
@@ -4277,7 +4277,7 @@ CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'noclip', DESC = 'Go through objects'}
 CMDs[#CMDs + 1] = {NAME = 'unnoclip / clip', DESC = 'Disables noclip'}
 CMDs[#CMDs + 1] = {NAME = 'fly [speed]', DESC = 'Makes you fly'}
-CMDs[#CMDs + 1] = {NAME = 'flyJS', DESC = 'Fly for controller'}
+CMDs[#CMDs + 1] = {NAME = 'flyJS [speed]', DESC = 'Fly for controller'}
 CMDs[#CMDs + 1] = {NAME = 'unfly', DESC = 'Disables fly'}
 CMDs[#CMDs + 1] = {NAME = 'flyspeed [num]', DESC = 'Set fly speed (default is 20)'}
 CMDs[#CMDs + 1] = {NAME = 'vehiclefly / vfly [speed]', DESC = 'Makes you fly in a vehicle'}
@@ -4336,6 +4336,8 @@ CMDs[#CMDs + 1] = {NAME = 'teleporttool / tptool', DESC = 'Gives you a teleport 
 CMDs[#CMDs + 1] = {NAME = '', DESC = ''}
 CMDs[#CMDs + 1] = {NAME = 'logs', DESC = 'Opens the logs GUI'}
 CMDs[#CMDs + 1] = {NAME = 'chatlogs / clogs', DESC = 'Log what people say or whisper'}
+CMDs[#CMDs + 1] = {NAME = 'togglevfly', DESC = 'Toggle vfly'}
+CMDs[#CMDs + 1] = {NAME = 'vflyJS', DESC = 'vfly for controller'}
 CMDs[#CMDs + 1] = {NAME = 'joinlogs / jlogs', DESC = 'Log when people join'}
 CMDs[#CMDs + 1] = {NAME = 'chat / say [text]', DESC = 'Makes you chat a string (possible mute bypass)'}
 CMDs[#CMDs + 1] = {NAME = 'spam [text]', DESC = 'Makes you spam the chat'}
@@ -6821,6 +6823,8 @@ function NOFLY()
 	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
 end
 
+FLYInput = 2
+FLYInput2 = 2
 FLYING2 = false
 iyflyspeed2 = 1
 vehicleflyspeed2 = 1
@@ -6879,7 +6883,9 @@ local UserInputService = game:GetService("UserInputService")
 flyKeyDown = UserInputService.InputChanged:Connect(function(KEY,gameProcessedEvent)
 
 local function doFlys(KEY)
-	iyflyspeed2 = KEY.Position.Y * 2
+	iyflyspeed2 = KEY.Position.Y * FLYInput
+	vehicleflyspeed2 = KEY.Position.Y * FLYInput2
+	
 	CONTROL.F = (vfly and vehicleflyspeed2 or iyflyspeed2)
 end
 
@@ -6942,7 +6948,9 @@ addcmd('flyJS',{},function(args, speaker)
 	wait()
 	sFLY2()
 	if args[1] and isNumber(args[1]) then
-		iyflyspeed2 = args[1]
+		FLYInput = args[1]
+	elseif args[1] == nil then
+		FLYInput = 1
 	end
 end)
 
@@ -6977,11 +6985,22 @@ addcmd('vfly',{'vehiclefly'},function(args, speaker)
 	end
 end)
 
+addcmd('vflyJS',{'vehiclefly'},function(args, speaker)
+	NOFLY2()
+	wait()
+	sFLY2(true)
+	if args[1] and isNumber(args[1]) then
+		vehicleflyspeed2 = args[1]
+	end
+end)
+
 addcmd('togglevfly',{},function(args, speaker)
-	if FLYING then
+	if FLYING or FLYING2 then
 		NOFLY()
+		NOFLY2()
 	else
 		sFLY(true)
+		sFLY2(true)
 	end
 end)
 
@@ -6989,6 +7008,9 @@ addcmd('vflyspeed',{'vflysp','vehicleflyspeed','vehicleflysp'},function(args, sp
 	local speed = args[1] or 1
 	if isNumber(speed) then
 		vehicleflyspeed = speed
+		FLYInput2 = speed
+	elseif speed == nil then
+	FLYInput2 = 2
 	end
 end)
 
