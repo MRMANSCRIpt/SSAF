@@ -1,0 +1,232 @@
+-- idk why i made this
+if not setfpscap then
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification", {
+		Title = "Incompatible";
+		Text = "Your exploit does not support setfpscap(), therefore an alternative script has been ran"
+})
+
+local gee = 60
+getgenv().lol = false
+
+local RHBB = Instance.new("ScreenGui")
+local FrameAlpha = Instance.new("Frame")
+local TitleL = Instance.new("TextLabel")
+local TauntID = Instance.new("TextBox")
+local Taunt = Instance.new("TextButton")
+--Properties:
+
+RHBB.Name = "RHBB"
+RHBB.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+RHBB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+RHBB.ResetOnSpawn = false
+
+FrameAlpha.Name = "FrameAlpha"
+FrameAlpha.Parent = RHBB
+FrameAlpha.Active = true
+FrameAlpha.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+FrameAlpha.BorderColor3 = Color3.fromRGB(15, 15, 15)
+FrameAlpha.Draggable = true
+FrameAlpha.Position = UDim2.new(0.792812407, -251, 0.538304329, -100)
+FrameAlpha.Size = UDim2.new(0, 187, 0, 66)
+
+TitleL.Name = "TitleL"
+TitleL.Parent = FrameAlpha
+TitleL.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TitleL.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TitleL.Size = UDim2.new(0, 187, 0, 33)
+TitleL.Font = Enum.Font.SourceSans
+task.spawn(function()
+	while wait(1) do
+		local johner = math.random(1,gee)
+		if lol == true then
+			local RunService = game:GetService("RunService")
+			task.spawn(function()
+				while lol == true do
+					local t0 = tick()
+					RunService.Heartbeat:Wait()
+					repeat until (t0 + 1/johner) < tick()
+				end
+			end)
+			TitleL.Text = "FPS CAP: "..tostring(johner)
+		end
+	end
+end)
+TitleL.TextColor3 = Color3.fromRGB(235, 235, 235)
+TitleL.TextScaled = true
+TitleL.TextSize = 14.000
+TitleL.TextStrokeTransparency = 0.000
+TitleL.TextWrapped = true
+
+TauntID.Name = "TauntID"
+TauntID.Parent = FrameAlpha
+TauntID.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TauntID.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TauntID.Position = UDim2.new(0, 0, 0.52608658, 0)
+TauntID.Size = UDim2.new(0, 187, 0, 30)
+TauntID.Font = Enum.Font.SourceSans
+TauntID.PlaceholderColor3 = Color3.fromRGB(76, 76, 76)
+TauntID.PlaceholderText = "Max Random FPS"
+TauntID.Text = ""
+TauntID.TextColor3 = Color3.fromRGB(0, 0, 0)
+TauntID.TextScaled = true
+TauntID.TextSize = 14.000
+TauntID.TextWrapped = true
+
+
+Taunt.Name = "Taunt"
+Taunt.Parent = FrameAlpha
+Taunt.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Taunt.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Taunt.Position = UDim2.new(0, 0, 1.0125502, 0)
+Taunt.Size = UDim2.new(0, 187, 0, 30)
+Taunt.Font = Enum.Font.SourceSans
+Taunt.Text = "Activate"
+Taunt.TextColor3 = Color3.fromRGB(235, 235, 235)
+Taunt.TextScaled = true
+Taunt.TextSize = 14.000
+Taunt.TextStrokeTransparency = 0.000
+Taunt.TextWrapped = true
+
+
+
+local function GVJGH_fake_script() -- TauntID.LocalScript 
+	local script = Instance.new('LocalScript', TauntID)
+
+	script.Parent.FocusLost:Connect(function(enter)
+		local n = script.Parent.Text
+		if enter then
+			gee = n
+		end
+	end)
+end
+coroutine.wrap(GVJGH_fake_script)()
+
+local function QYAGET_fake_script() -- Taunt.LocalScript 
+	local script = Instance.new('LocalScript', Taunt)
+	local activ = false
+	script.Parent.MouseButton1Click:Connect(function()
+		if activ == false then
+			activ = true
+			Taunt.Text = "Disable"
+			lol = true
+		elseif activ == true then
+			activ = false
+			Taunt.Text = "Enable"
+			lol = false
+					local t0 = tick()
+					RunService.Heartbeat:Wait()
+					repeat until (t0 + 1/240) < tick()
+		end
+	end)
+end
+coroutine.wrap(QYAGET_fake_script)()
+elseif setfpscap then
+local gee = 60
+getgenv().lol = false
+
+local RHBB = Instance.new("ScreenGui")
+local FrameAlpha = Instance.new("Frame")
+local TitleL = Instance.new("TextLabel")
+local TauntID = Instance.new("TextBox")
+local Taunt = Instance.new("TextButton")
+--Properties:
+
+RHBB.Name = "RHBB"
+RHBB.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+RHBB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+RHBB.ResetOnSpawn = false
+
+FrameAlpha.Name = "FrameAlpha"
+FrameAlpha.Parent = RHBB
+FrameAlpha.Active = true
+FrameAlpha.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+FrameAlpha.BorderColor3 = Color3.fromRGB(15, 15, 15)
+FrameAlpha.Draggable = true
+FrameAlpha.Position = UDim2.new(0.792812407, -251, 0.538304329, -100)
+FrameAlpha.Size = UDim2.new(0, 187, 0, 66)
+
+TitleL.Name = "TitleL"
+TitleL.Parent = FrameAlpha
+TitleL.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TitleL.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TitleL.Size = UDim2.new(0, 187, 0, 33)
+TitleL.Font = Enum.Font.SourceSans
+task.spawn(function()
+	while wait(1) do
+		if lol == true then
+		local john = math.random(1,gee)
+		setfpscap(john)
+		print(john)
+		TitleL.Text = "FPS CAP: "..tostring(john)
+		end
+	end
+end)
+TitleL.TextColor3 = Color3.fromRGB(235, 235, 235)
+TitleL.TextScaled = true
+TitleL.TextSize = 14.000
+TitleL.TextStrokeTransparency = 0.000
+TitleL.TextWrapped = true
+
+TauntID.Name = "TauntID"
+TauntID.Parent = FrameAlpha
+TauntID.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TauntID.BorderColor3 = Color3.fromRGB(15, 15, 15)
+TauntID.Position = UDim2.new(0, 0, 0.52608658, 0)
+TauntID.Size = UDim2.new(0, 187, 0, 30)
+TauntID.Font = Enum.Font.SourceSans
+TauntID.PlaceholderColor3 = Color3.fromRGB(76, 76, 76)
+TauntID.PlaceholderText = "Max Random FPS"
+TauntID.Text = ""
+TauntID.TextColor3 = Color3.fromRGB(0, 0, 0)
+TauntID.TextScaled = true
+TauntID.TextSize = 14.000
+TauntID.TextWrapped = true
+
+
+Taunt.Name = "Taunt"
+Taunt.Parent = FrameAlpha
+Taunt.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Taunt.BorderColor3 = Color3.fromRGB(15, 15, 15)
+Taunt.Position = UDim2.new(0, 0, 1.0125502, 0)
+Taunt.Size = UDim2.new(0, 187, 0, 30)
+Taunt.Font = Enum.Font.SourceSans
+Taunt.Text = "Activate"
+Taunt.TextColor3 = Color3.fromRGB(235, 235, 235)
+Taunt.TextScaled = true
+Taunt.TextSize = 14.000
+Taunt.TextStrokeTransparency = 0.000
+Taunt.TextWrapped = true
+
+
+
+local function GVJGH_fake_script() -- TauntID.LocalScript 
+	local script = Instance.new('LocalScript', TauntID)
+
+	script.Parent.FocusLost:Connect(function(enter)
+		local n = script.Parent.Text
+		if enter then
+			gee = n
+		end
+	end)
+end
+coroutine.wrap(GVJGH_fake_script)()
+
+local function QYAGET_fake_script() -- Taunt.LocalScript 
+	local script = Instance.new('LocalScript', Taunt)
+	local activ = false
+	script.Parent.MouseButton1Click:Connect(function()
+		if activ == false then
+			activ = true
+			Taunt.Text = "Disable"
+			lol = true
+		elseif activ == true then
+			activ = false
+			Taunt.Text = "Enable"
+			lol = false
+			setfpscap(60)
+		end
+	end)
+end
+coroutine.wrap(QYAGET_fake_script)()
+end
