@@ -1,5 +1,5 @@
 -- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
-local cdtime = 3 -- cooldown time
+getgenv().cdtime = 3 -- cooldown time
 getgenv().cooldown = false
 getgenv().ScriptActive = true
 getgenv().walkto = false
