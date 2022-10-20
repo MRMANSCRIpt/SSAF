@@ -1,0 +1,219 @@
+-- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
+local cdtime = 3 -- cooldown time
+getgenv().cooldown = false
+getgenv().ScriptActive = true
+getgenv().walkto = false
+getgenv().welcomeMsg = true
+local gotoPlayer
+
+	local players = game:GetService("Players")
+	local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
+    local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
+
+print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
+
+if welcomeMsg then
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
+	wait(0.1)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+end
+    messageDoneFiltering.OnClientEvent:Connect(function(message)
+	local player = players:FindFirstChild(message.FromSpeaker)
+    local message = message.Message or ""
+	if ScriptActive == true and message:find("!",1,1) then
+        if player and message == "!hello" then
+			print(player)
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello, "..tostring(game.Players:FindFirstChild(tostring(player)).DisplayName)..". This is a test message","All")
+        elseif player and message:find("!iq") then
+			if message:find("My commands are") then
+				print("Prevented")
+			elseif message:find("!iq ") then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!iq ","").."'s IQ is "..math.random(70,190),"All")
+			else
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
+			end
+		elseif player and message:find("!say") then
+			if message:find("[username]") then
+				print("Prevented 2")
+			else
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Disabled for mischief","All")
+			end
+		elseif player and message == "!cripple" then
+			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = true
+			wait(2)
+			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = false
+		elseif player and message:find("!chat") then
+			local Split1 = message:gsub("!chat ","")
+			local Split = Split1:gsub(" ","+")
+			if message:find("#") then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("tags lol (not ai generated)","All")
+			else
+			local HttpService = game:GetService("HttpService")
+			local Data = game:HttpGet('http://api.brainshop.ai/get?bid=169062&key=JxGYLvYneFFxKdnf&uid=1&msg='..Split)
+			local req = HttpService:JSONDecode(Data)
+			print(Split)
+			print(req.cnt)
+			if #req.cnt < 160 then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(req.cnt,"All")
+			else
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Failed to reply (answer too long)","All")
+			end
+			end
+		elseif player and message == "!cmds" or message == "!help" then
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+		elseif player and message == "!jump" then
+			game.Players.LocalPlayer.Character.Humanoid.Jump = true
+		elseif player and message == "!coinflip" then
+			local g = math.random(1,2)
+			if g == 1 then
+				print("It landed on Tails.")
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It landed on Tails.","All")
+			elseif g == 2 then
+				print("It landed on Heads.")
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It landed on Heads.","All")
+			end
+		elseif player and message:find("!uwuify ") then
+			local ez = message:gsub("!uwuify ","")
+			local response = request(
+			{
+				Url = "https://uwuaas.herokuapp.com/api",  -- This website helps debug HTTP requests
+				Method = "POST",
+				Headers = {
+					["Content-Type"] = "application/json"  -- When sending JSON, set this!
+				},
+				Body = game:GetService("HttpService"):JSONEncode({text = ""..ez})
+			}
+		)
+
+print(ez)
+		local uwuified
+
+		for i,v in pairs(response) do
+			if type(v) == "string" and v:find("text") then
+			local g = v:gsub([[{"text":"]],"")
+			local f = g:gsub("}","")
+			local z = f:gsub([["]],"")
+			uwuified = z
+			print(uwuified)
+			end
+		end
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(uwuified,"All")
+		elseif player and message == "!gameinfo" then
+			local thing = game:HttpGet("https://api.roblox.com/universes/get-universe-containing-place?placeid="..game.PlaceId)
+local s = game:GetService("HttpService"):JSONDecode(thing)
+print(s.UniverseId)
+local HTTP = game:GetService("HttpService")
+local thing = game:HttpGet("https://api.roblox.com/universes/get-universe-containing-place?placeid="..game.PlaceId)
+local s = game:GetService("HttpService"):JSONDecode(thing)
+local gameRequest = game:HttpGet("https://games.roproxy.com/v1/games?universeIds="..s.UniverseId)
+local Visits = HTTP:JSONDecode(gameRequest).data[1].visits
+print(Visits)
+
+			local response = request(
+			{
+				Url = "https://games.roblox.com/v1/games/"..s.UniverseId.."/votes",  -- This website helps debug HTTP requests
+				Method = "GET",
+				Headers = {
+					["Content-Type"] = "application/json"  -- When sending JSON, set this!
+				},
+				Body = game:GetService("HttpService"):JSONEncode({universeId = ""..s.UniverseId})
+			}
+		)
+		for i,v in pairs(response) do
+    	if type(v) == "string" then
+		local real = game:GetService("HttpService"):JSONDecode(response.Body)
+		print("The game has "..Visits.." visits and "..real.upVotes.." upvotes and "..real.downVotes.." downvotes.")
+		if Visits < 10000 then
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 10k visits.","All")
+			elseif Visits < 100000 then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 100k visits.","All")
+				elseif Visits < 1000000 then
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 1 Million visits.","All")
+				else
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has over a million visits.","All")
+		end
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has "..real.upVotes.." upvotes and "..real.downVotes.." downvotes.","All")
+break;
+		end
+		end
+		elseif player and message:find("!accountage ") then
+			local Msg = message:gsub("!accountage ","")
+				local plrid = game:GetService("Players"):GetUserIdFromNameAsync(Msg)
+
+local response = request(
+			{
+				Url = "https://users.roblox.com/v1/users/"..tostring(plrid),  -- This website helps debug HTTP requests
+				Method = "GET",
+				Headers = {
+					["Content-Type"] = "application/json"  -- When sending JSON, set this!
+				}
+			}
+		)
+		local d = game:GetService("HttpService"):JSONDecode(response.Body)
+		print(d.created)
+local createdTime = DateTime.fromIsoDate(tostring(d.created)).UnixTimestamp
+local currentTime = DateTime.now().UnixTimestamp
+
+local accountAgeDays = (currentTime - createdTime)/86400
+print(math.floor(accountAgeDays))
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Msg.."'s account is "..math.floor(accountAgeDays).." days old","All")
+		elseif player and message:find("!cooldown") then
+			if cooldown == true then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is "..cdtime.." seconds.","All")
+			elseif cooldown == false then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown is not active.","All")
+			end
+		elseif player and message:find("!follow ") then
+			if message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.DisplayName) or message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.Name) then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("yeah no","All")
+			else
+			walkto = false
+			wait(0.5)
+			walkto = true
+			gotoPlayer = tostring(player)
+			local msg = message:gsub("!follow ","")
+			local plr
+			for i,v in pairs(game.Players:GetChildren()) do
+				if v.DisplayName == msg or v.Name == msg then
+					plr = tostring(v.Name)
+				end
+			end
+			task.spawn(function()
+			while walkto and wait() do
+			game.Players.LocalPlayer.Character.Humanoid:MoveTo(game.Workspace:FindFirstChild(plr).HumanoidRootPart.CFrame*Vector3.new(0,0,3))
+			end
+			end)
+		end
+		elseif player and message == "!stop" then
+			print(gotoPlayer)
+			if tostring(player) == tostring(gotoPlayer) or tostring(player) == tostring(game.Players.LocalPlayer.Name) then
+				walkto = false
+			else
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only the GoTo player can do that.","All")
+			end
+		elseif player and message:find("!morse ") then
+			local split = message:gsub("!morse ","")
+			local split2 = split:gsub(" ","+")
+			print(split2)
+						local rep = request({
+				Url = "http://www.morsecode-api.de/encode?string="..split2,
+				Method = "GET"
+			})
+			for i,v in pairs(rep) do
+				if type(v) == "string" then
+					local real = game:GetService("HttpService"):JSONDecode(rep.Body)
+					print(real.plaintext,real.morsecode)
+					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(real.morsecode,"All")
+					break;
+				end
+			end
+		end
+				if cooldown then
+		ScriptActive = false
+		wait(cdtime)
+		ScriptActive = true
+				end
+		end
+		end)
