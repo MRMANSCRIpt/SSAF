@@ -1,9 +1,11 @@
 -- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
-getgenv().cdtime = 3 -- cooldown time
-getgenv().cooldown = false
-getgenv().ScriptActive = true
-getgenv().walkto = false
-getgenv().welcomeMsg = true
+_G.settings = {
+cdtime = 3; -- cooldown time
+cooldown = true;
+ScriptActive = true;
+walkto = false;
+welcomeMsg = true;
+}
 local gotoPlayer
 
 	local players = game:GetService("Players")
@@ -12,7 +14,7 @@ local gotoPlayer
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
-if welcomeMsg then
+if _G.settings.welcomeMsg then
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
@@ -20,7 +22,7 @@ end
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
-	if ScriptActive == true and message:find("!",1,1) then
+	if _G.settings.ScriptActive == true and message:find("!",1,1) then
         if player and message == "!hello" then
 			print(player)
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello, "..tostring(game.Players:FindFirstChild(tostring(player)).DisplayName)..". This is a test message","All")
@@ -160,18 +162,18 @@ local accountAgeDays = (currentTime - createdTime)/86400
 print(math.floor(accountAgeDays))
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Msg.."'s account is "..math.floor(accountAgeDays).." days old","All")
 		elseif player and message:find("!cooldown") then
-			if cooldown == true then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is "..cdtime.." seconds.","All")
-			elseif cooldown == false then
+			if _G.settings.cooldown == true then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is ".._G.settings.cdtime.." seconds.","All")
+			elseif _G.settings.cooldown == false then
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown is not active.","All")
 			end
 		elseif player and message:find("!follow ") then
 			if message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.DisplayName) or message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.Name) then
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("yeah no","All")
 			else
-			walkto = false
+			_G.settings.walkto = false
 			wait(0.5)
-			walkto = true
+			_G.settings.walkto = true
 			gotoPlayer = tostring(player)
 			local msg = message:gsub("!follow ","")
 			local plr
@@ -181,7 +183,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 				end
 			end
 			task.spawn(function()
-			while walkto and wait() do
+			while _G.settings.walkto and wait() do
 			game.Players.LocalPlayer.Character.Humanoid:MoveTo(game.Workspace:FindFirstChild(plr).HumanoidRootPart.CFrame*Vector3.new(0,0,3))
 			end
 			end)
@@ -189,7 +191,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 		elseif player and message == "!stop" then
 			print(gotoPlayer)
 			if tostring(player) == tostring(gotoPlayer) or tostring(player) == tostring(game.Players.LocalPlayer.Name) then
-				walkto = false
+				_G.settings.walkto = false
 			else
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only the GoTo player can do that.","All")
 			end
@@ -210,10 +212,10 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 				end
 			end
 		end
-				if cooldown then
-		ScriptActive = false
-		wait(cdtime)
-		ScriptActive = true
+				if _G.settings.cooldown then
+		_G.settings.ScriptActive = false
+		wait(_G.settings.cdtime)
+		_G.settings.ScriptActive = true
 				end
 		end
 		end)
