@@ -1,11 +1,11 @@
 -- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
 
-_G.cdtime = 3; -- cooldown time
-_G.cooldown = true;
-_G.welcomeMsg = true;
+getgenv().cdtime = 3; -- cooldown time
+getgenv().cooldown = true;
+getgenv().welcomeMsg = true;
 
-_G.ScriptActive = true;
-_G.walkto = false;
+getgenv().ScriptActive = true;
+getgenv().walkto = false;
 
 local gotoPlayer
 
@@ -15,7 +15,7 @@ local gotoPlayer
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
-if _G.welcomeMsg then
+if getgenv().welcomeMsg then
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
@@ -23,7 +23,7 @@ end
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
-	if _G.ScriptActive == true and message:find("!",1,1) then
+	if ScriptActive == true and message:find("!",1,1) then
         if player and message == "!hello" then
 			print(player)
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello, "..tostring(game.Players:FindFirstChild(tostring(player)).DisplayName)..". This is a test message","All")
@@ -163,18 +163,18 @@ local accountAgeDays = (currentTime - createdTime)/86400
 print(math.floor(accountAgeDays))
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Msg.."'s account is "..math.floor(accountAgeDays).." days old","All")
 		elseif player and message:find("!cooldown") then
-			if _G.cooldown == true then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is ".._G.cdtime.." seconds.","All")
-			elseif _G.cooldown == false then
+			if cooldown == true then
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is "..cdtime.." seconds.","All")
+			elseif cooldown == false then
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown is not active.","All")
 			end
 		elseif player and message:find("!follow ") then
 			if message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.DisplayName) or message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.Name) then
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("yeah no","All")
 			else
-			_G.walkto = false
+			walkto = false
 			wait(0.5)
-			_G.walkto = true
+			walkto = true
 			gotoPlayer = tostring(player)
 			local msg = message:gsub("!follow ","")
 			local plr
@@ -184,7 +184,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 				end
 			end
 			task.spawn(function()
-			while _G.walkto and wait() do
+			while walkto and wait() do
 			game.Players.LocalPlayer.Character.Humanoid:MoveTo(game.Workspace:FindFirstChild(plr).HumanoidRootPart.CFrame*Vector3.new(0,0,3))
 			end
 			end)
@@ -192,7 +192,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 		elseif player and message == "!stop" then
 			print(gotoPlayer)
 			if tostring(player) == tostring(gotoPlayer) or tostring(player) == tostring(game.Players.LocalPlayer.Name) then
-				_G.walkto = false
+				walkto = false
 			else
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only the GoTo player can do that.","All")
 			end
@@ -213,10 +213,10 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 				end
 			end
 		end
-				if _G.cooldown then
-		_G.ScriptActive = false
-		wait(_G.cdtime)
-		_G.ScriptActive = true
+				if cooldown then
+		ScriptActive = false
+		wait(cdtime)
+		ScriptActive = true
 				end
 		end
 		end)
