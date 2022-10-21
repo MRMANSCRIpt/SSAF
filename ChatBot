@@ -17,10 +17,9 @@ local gotoPlayer
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
 
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v5.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
-
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
@@ -37,10 +36,10 @@ print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
 			end
 		elseif player and message:find("!say") then
-			if message:find("[username],") then
+			if message:find("[username]") then
 				print("Prevented 2")
 			else
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!say ",""),"All")
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Disabled for mischief","All")
 			end
 		elseif player and message == "!cripple" then
 			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
@@ -68,7 +67,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 		elseif player and message == "!cmds" or message == "!help" then
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
 		elseif player and message == "!jump" then
 			game.Players.LocalPlayer.Character.Humanoid.Jump = true
 		elseif player and message == "!coinflip" then
@@ -215,6 +214,13 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 					break;
 				end
 			end
+		elseif player and message:find("!math ") then
+			local split2 = message:gsub("!math ","")
+			local split = split2:gsub("%a","")
+			print(split)
+			local g = loadstring("return "..split)()
+			print(g)
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(""..tostring(g),"All")
 		end
 				if cooldown then
 		ScriptActive = false
