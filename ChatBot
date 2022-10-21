@@ -2,7 +2,6 @@
 
 getgenv().cdtime = 3; -- cooldown time
 getgenv().cooldown = true;
-getgenv().welcomeMsg = false;
 
 getgenv().ScriptActive = true;
 getgenv().walkto = false;
@@ -15,13 +14,9 @@ local gotoPlayer
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
-wait(0.5)
-print("waited")
-if getgenv().welcomeMsg then
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
-end
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
