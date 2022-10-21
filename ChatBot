@@ -37,10 +37,10 @@ print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
 			end
 		elseif player and message:find("!say") then
-			if message:find("[username]") then
+			if message:find("[username],") then
 				print("Prevented 2")
 			else
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Disabled for mischief","All")
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!say ",""),"All")
 			end
 		elseif player and message == "!cripple" then
 			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
