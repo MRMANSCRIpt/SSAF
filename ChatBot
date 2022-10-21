@@ -1,4 +1,4 @@
--- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
+-- not obfuscated thank me later and made by ! $ ive seen sunlight#6040
 
 getgenv().cdtime = 3; -- cooldown time
 getgenv().cooldown = true;
