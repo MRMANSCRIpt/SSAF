@@ -6,6 +6,8 @@ getgenv().cooldown = true;
 getgenv().ScriptActive = true;
 getgenv().walkto = false;
 
+print(cdtime,(cooldown))
+
 local gotoPlayer
 
 	local players = game:GetService("Players")
