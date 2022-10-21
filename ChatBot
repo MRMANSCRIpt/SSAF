@@ -1,4 +1,4 @@
--- not obfuscated thank me later and made by ! $ ive seen sunlight#6040
+-- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
 
 getgenv().cdtime = 3; -- cooldown time
 getgenv().cooldown = true;
@@ -13,9 +13,12 @@ local gotoPlayer
     local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
+
+
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v4.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
@@ -61,7 +64,9 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			end
 			end
 		elseif player and message == "!cmds" or message == "!help" then
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !follow [plr], !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
+	wait(0.1)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
 		elseif player and message == "!jump" then
 			game.Players.LocalPlayer.Character.Humanoid.Jump = true
 		elseif player and message == "!coinflip" then
