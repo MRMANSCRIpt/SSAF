@@ -4,7 +4,7 @@ _G.cdtime = 3; -- cooldown time
 _G.cooldown = true;
 _G.ScriptActive = true;
 _G.walkto = false;
-_G.welcomeMsg = false;
+_G.welcomeMsg = true;
 
 local gotoPlayer
 
