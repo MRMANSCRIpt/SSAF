@@ -10,9 +10,6 @@ print(cdtime,(cooldown))
 
 local gotoPlayer
 
-	game:GetService("ScriptContext").Error:Connect(function(Error)
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Error,"All")
-end)
 
 	local players = game:GetService("Players")
 	local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
