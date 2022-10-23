@@ -17,10 +17,11 @@ local gotoPlayer
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v5.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
-	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
-    messageDoneFiltering.OnClientEvent:Connect(function(message)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v6.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !tp [user],","All")
+wait(0.1)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !bring, !say [text] and !chat [text].","All")
+
+messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
 	if ScriptActive == true and message:find("!",1,1) then
@@ -35,12 +36,10 @@ print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 			else
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
 			end
-		elseif player and message:find("!say") then
-			if message:find("[username]") then
-				print("Prevented 2")
-			else
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Disabled for mischief","All")
-			end
+		elseif player and message:find("!say ") then
+
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!say ",""),"All")
+
 		elseif player and message == "!cripple" then
 			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
 			game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Sit = true
@@ -65,9 +64,9 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			end
 			end
 		elseif player and message == "!cmds" or message == "!help" then
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo,","All")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !tp [user],","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !say [text] and !chat [text].","All")
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !bring, !say [text] and !chat [text].","All")
 		elseif player and message == "!jump" then
 			game.Players.LocalPlayer.Character.Humanoid.Jump = true
 		elseif player and message == "!coinflip" then
@@ -225,6 +224,47 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			else
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(""..tostring(g),"All")
 			end
+		elseif player and message:find("!tp ") then
+			local spl = message:gsub("!tp ","")
+for i,v in pairs(game.Players:GetChildren()) do
+    if v.DisplayName == spl or v.Name == spl then
+    if v and v.Character then local sc = v.Character
+        local sch = sc.HumanoidRootPart
+        local lph = game.Players.LocalPlayer.Character.HumanoidRootPart
+        local TweenService = game:GetService("TweenService")
+
+local part = lph
+
+local tweenInfo = TweenInfo.new(
+    1, -- Time
+    Enum.EasingStyle.Sine, -- EasingStyle
+    Enum.EasingDirection.InOut, -- EasingDirection
+    0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+    false, -- Reverses (tween will reverse once reaching it's goal)
+    0 -- DelayTime
+)
+
+local tween = TweenService:Create(part, tweenInfo, { CFrame = sch.CFrame })
+
+tween:Play()
+    end
+end
+end
+		elseif player and message == "!bring" then
+			print(message)
+			local part = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+local tweenInfo = TweenInfo.new(
+    1, -- Time
+    Enum.EasingStyle.Sine, -- EasingStyle
+    Enum.EasingDirection.InOut, -- EasingDirection
+    0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+    false, -- Reverses (tween will reverse once reaching it's goal)
+    0 -- DelayTime
+)
+
+local tween = game:GetService("TweenService"):Create(part, tweenInfo, { CFrame = game.Workspace:FindFirstChild(tostring(player)).HumanoidRootPart.CFrame })
+tween:Play()
 		end
 				if cooldown then
 		ScriptActive = false
