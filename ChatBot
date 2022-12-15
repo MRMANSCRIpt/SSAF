@@ -1,15 +1,14 @@
 -- not obfuscated. thank me later and made by ! $ ive seen sunlight#6040
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/MRMANSCRIpt/SSAF/main/ChatBot'))()
 
 getgenv().cdtime = 3; -- cooldown time
 getgenv().cooldown = true;
+getgenv().welcomeMsg = false;
 
 getgenv().ScriptActive = true;
 getgenv().walkto = false;
 
-print(cdtime,(cooldown))
-
 local gotoPlayer
-
 
 	local players = game:GetService("Players")
 	local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
@@ -17,11 +16,12 @@ local gotoPlayer
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v6.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !tp [user],","All")
-wait(0.1)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !bring, !say [text] and !chat [text].","All")
-
-messageDoneFiltering.OnClientEvent:Connect(function(message)
+if welcomeMsg then
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v6.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
+	wait(0.1)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
+end
+    messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
 	if ScriptActive == true and message:find("!",1,1) then
@@ -64,9 +64,9 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			end
 			end
 		elseif player and message == "!cmds" or message == "!help" then
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !gameinfo, !tp [user],","All")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !uwuify [text], !jump, !bring, !say [text] and !chat [text].","All")
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
 		elseif player and message == "!jump" then
 			game.Players.LocalPlayer.Character.Humanoid.Jump = true
 		elseif player and message == "!coinflip" then
@@ -78,70 +78,6 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 				print("It landed on Heads.")
 				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It landed on Heads.","All")
 			end
-		elseif player and message:find("!uwuify ") then
-			local ez = message:gsub("!uwuify ","")
-			local response = request(
-			{
-				Url = "https://uwuaas.herokuapp.com/api",  -- This website helps debug HTTP requests
-				Method = "POST",
-				Headers = {
-					["Content-Type"] = "application/json"  -- When sending JSON, set this!
-				},
-				Body = game:GetService("HttpService"):JSONEncode({text = ""..ez})
-			}
-		)
-
-print(ez)
-		local uwuified
-
-		for i,v in pairs(response) do
-			if type(v) == "string" and v:find("text") then
-			local g = v:gsub([[{"text":"]],"")
-			local f = g:gsub("}","")
-			local z = f:gsub([["]],"")
-			uwuified = z
-			print(uwuified)
-			end
-		end
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(uwuified,"All")
-		elseif player and message == "!gameinfo" then
-			local thing = game:HttpGet("https://api.roblox.com/universes/get-universe-containing-place?placeid="..game.PlaceId)
-local s = game:GetService("HttpService"):JSONDecode(thing)
-print(s.UniverseId)
-local HTTP = game:GetService("HttpService")
-local thing = game:HttpGet("https://api.roblox.com/universes/get-universe-containing-place?placeid="..game.PlaceId)
-local s = game:GetService("HttpService"):JSONDecode(thing)
-local gameRequest = game:HttpGet("https://games.roproxy.com/v1/games?universeIds="..s.UniverseId)
-local Visits = HTTP:JSONDecode(gameRequest).data[1].visits
-print(Visits)
-
-			local response = request(
-			{
-				Url = "https://games.roblox.com/v1/games/"..s.UniverseId.."/votes",  -- This website helps debug HTTP requests
-				Method = "GET",
-				Headers = {
-					["Content-Type"] = "application/json"  -- When sending JSON, set this!
-				},
-				Body = game:GetService("HttpService"):JSONEncode({universeId = ""..s.UniverseId})
-			}
-		)
-		for i,v in pairs(response) do
-    	if type(v) == "string" then
-		local real = game:GetService("HttpService"):JSONDecode(response.Body)
-		print("The game has "..Visits.." visits and "..real.upVotes.." upvotes and "..real.downVotes.." downvotes.")
-		if Visits < 10000 then
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 10k visits.","All")
-			elseif Visits < 100000 then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 100k visits.","All")
-				elseif Visits < 1000000 then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has less than 1 Million visits.","All")
-				else
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has over a million visits.","All")
-		end
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The game has "..real.upVotes.." upvotes and "..real.downVotes.." downvotes.","All")
-break;
-		end
-		end
 		elseif player and message:find("!accountage ") then
 			local Msg = message:gsub("!accountage ","")
 				local plrid = game:GetService("Players"):GetUserIdFromNameAsync(Msg)
@@ -202,17 +138,21 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			local split2 = split:gsub(" ","+")
 			print(split2)
 						local rep = request({
-				Url = "http://www.morsecode-api.de/encode?string="..split2,
-				Method = "GET"
+				Url = "https://api.funtranslations.com/translate/morse.json?text="..game:GetService"HttpService":UrlEncode(split2),
+				Method = "GET",
+				Headers = {
+					["Content-Type"] = "application/json"  -- When sending JSON, set this!
+				},
 			})
+			local morsetxt
 			for i,v in pairs(rep) do
 				if type(v) == "string" then
-					local real = game:GetService("HttpService"):JSONDecode(rep.Body)
-					print(real.plaintext,real.morsecode)
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(real.morsecode,"All")
-					break;
+					print(v)
+					local req = game.HttpService:JSONDecode(rep.Body)
+					morsetxt = req.contents.translated
 				end
 			end
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(morsetxt,"All")
 		elseif player and message:find("!math ") then
 			local split2 = message:gsub("!math ","")
 			local split = split2:gsub("%a","")
