@@ -1,7 +1,7 @@
 --controller support made by the homie ! $ ive seen sunlight#6040
 
 if IY_LOADED and not _G.IY_DEBUG == true then
-	-- error("Infinite Yield is already running!",0)
+	error("Infinite Yield is already running!",0)
 	return
 end
 
@@ -4228,6 +4228,7 @@ CMDs = {}
 CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the Infinite Yield support server.'}
 CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'explorer / dex', DESC = 'Opens DEX explorer'}
+CMDs[#CMDs + 1] = {NAME = 'olddex', DESC = 'dex but u can edit le propertie'}
 CMDs[#CMDs + 1] = {NAME = 'remotespy / rspy', DESC = 'Opens FrostHook Spy'}
 CMDs[#CMDs + 1] = {NAME = 'audiologger / alogger', DESC = 'Opens Edges audio logger'}
 CMDs[#CMDs + 1] = {NAME = 'serverinfo / info', DESC = 'Gives you info about the server'}
@@ -6889,7 +6890,7 @@ local function doFlys(KEY)
 	CONTROL.F = (vfly and vehicleflyspeed2 or iyflyspeed2)
 end
 
-if not gameProcessedEvent then
+
 if KEY.UserInputType == Enum.UserInputType.Gamepad1 then
 		task.spawn(function()
 		while wait() do
@@ -6914,7 +6915,7 @@ else
 			CONTROL.E = -(vfly and vehicleflyspeed2 or iyflyspeed2)*2
 		end
 		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
-		end
+
 		end
 		end)
 	flyKeyUp = IYMouse.KeyUp:Connect(function(KEY)
@@ -10088,6 +10089,10 @@ addcmd('explorer',{'dex'},function(args, speaker)
     end
 
     Load(Dex)
+end)
+
+addcmd('olddex',{},function(args, speaker)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
 end)
 
 addcmd('remotespy',{'rspy'},function(args, speaker)
